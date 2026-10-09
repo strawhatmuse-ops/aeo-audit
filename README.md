@@ -1,13 +1,13 @@
-# dabbi-audit
+# aeo-audit
 
 Do AI answers mention your brand? Find out.
 
-`dabbi-audit` scans a page the way AI crawlers read it — 6 checks, one score, zero signup. Part of the `@digitaldabbi` toolchain.
+`aeo-audit` scans a page the way AI crawlers read it — 6 checks, one score, zero signup. Part of the `@digitaldabbi` toolchain.
 
 ## Install
 
 ```sh
-npm install -g @digitaldabbi/dabbi-audit
+npm install -g @digitaldabbi/aeo-audit
 ```
 
 Requires Node >= 18. Zero dependencies.
@@ -15,7 +15,7 @@ Requires Node >= 18. Zero dependencies.
 ## Usage
 
 ```sh
-dabbi-audit https://yourwebsite.com
+aeo-audit https://yourwebsite.com
 ```
 
 ```
@@ -37,10 +37,10 @@ FIXES:
 Flags:
 
 ```sh
-dabbi-audit <url> --json        # machine-readable output
-dabbi-audit <url> --no-color    # plain output, no ANSI codes
-dabbi-audit --help
-dabbi-audit --version
+aeo-audit <url> --json        # machine-readable output
+aeo-audit <url> --no-color    # plain output, no ANSI codes
+aeo-audit --help
+aeo-audit --version
 ```
 
 `--json` prints the full report: url, title, score, verdict, per-check pass/detail/hint, and meta (duration, timestamp).
@@ -68,12 +68,12 @@ Same engine as the web auditor at digitaldabbi — the CLI is the same logic, no
 
 ## The toolchain
 
-- `@digitaldabbi/dabbi-audit` — this scanner (open, MIT)
+- `@digitaldabbi/aeo-audit` — this scanner (open, MIT)
 - `@digitaldabbi/llms-txt` — llms.txt generator (planned)
 - GitHub Action for CI (planned)
 - Hosted mention tracking + white-label API (proprietary)
 
-Don't want to DIY? [Digital Dabbi](https://github.com/strawhatmuse-ops/dabbi-audit) does done-for-you audits.
+Don't want to DIY? [Digital Dabbi](https://github.com/strawhatmuse-ops/aeo-audit) does done-for-you audits.
 
 ## License
 
