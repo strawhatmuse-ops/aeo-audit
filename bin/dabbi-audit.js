@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
- * aeo-audit — check whether AI answer engines can read and cite your pages.
+ * dabbi-audit — check whether AI answer engines can read and cite your pages.
  *
  * Zero dependencies. Plain Node.js (>=18). Same 6 checks and scoring as the
  * Digital Dabbi web auditor — ported faithfully, not reimplemented.
  *
- * Usage: aeo-audit <url> [--json] [--no-color]
+ * Usage: dabbi-audit <url> [--json] [--no-color]
  */
 
 import { lookup } from "node:dns/promises";
@@ -16,7 +16,7 @@ const PAGE_MAX_BYTES = 2 * 1024 * 1024;
 const LLMS_TIMEOUT_MS = 6_000;
 const LLMS_MAX_BYTES = 100 * 1024;
 const MAX_REDIRECTS = 5;
-const UA = `DigitalDabbi-Audit-CLI/${VERSION} (+https://github.com/strawhatmuse-ops/aeo-audit)`;
+const UA = `DigitalDabbi-Audit-CLI/${VERSION} (+https://github.com/strawhatmuse-ops/dabbi-audit)`;
 
 /* ------------------------------------------------------------------ */
 /* CLI plumbing                                                        */
@@ -37,11 +37,11 @@ for (const a of rawArgs) {
     console.log(VERSION);
     process.exit(0);
   } else if (a.startsWith("-")) {
-    fail(`Unknown flag: ${a}\nRun \`aeo-audit --help\`.`);
+    fail(`Unknown flag: ${a}\nRun \`dabbi-audit --help\`.`);
   } else if (urlArg === null) {
     urlArg = a;
   } else {
-    fail("Too many arguments. Usage: aeo-audit <url>");
+    fail("Too many arguments. Usage: dabbi-audit <url>");
   }
 }
 
@@ -59,10 +59,10 @@ const RESET = useColor ? "\x1b[0m" : "";
 
 function printHelp() {
   console.log(
-    `aeo-audit v${VERSION} — do AI answers mention your brand?
+    `dabbi-audit v${VERSION} — do AI answers mention your brand?
 
 Usage:
-  aeo-audit <url> [--json] [--no-color]
+  dabbi-audit <url> [--json] [--no-color]
 
 Checks (0–100):
   llms.txt, schema.org, question headings, answer blocks,
@@ -74,7 +74,7 @@ Flags:
   --help       this text
   --version    print version
 
-Part of the @digitaldabbi toolchain. https://github.com/strawhatmuse-ops/aeo-audit`
+Part of the @digitaldabbi toolchain. https://github.com/strawhatmuse-ops/dabbi-audit`
   );
 }
 
@@ -565,7 +565,7 @@ async function audit(targetUrl) {
 
 function printReport(r) {
   const icon = (pass) => (pass ? `${GREEN}✓${RESET}` : `${RED}✗${RESET}`);
-  console.log(`\n${BOLD}${r.url}${RESET}${DIM} — aeo-audit v${VERSION}${RESET}\n`);
+  console.log(`\n${BOLD}${r.url}${RESET}${DIM} — dabbi-audit v${VERSION}${RESET}\n`);
   const width = Math.max(...r.checks.map((c) => c.id.length));
   for (const c of r.checks) {
     console.log(`  ${icon(c.pass)} ${c.id.padEnd(width)}  ${DIM}${c.detail}${RESET}`);
